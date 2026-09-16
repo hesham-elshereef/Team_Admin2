@@ -1,0 +1,19 @@
+#!/bin/bash
+#This script for add new user
+echo "Please entre username"
+read username
+
+grep -w  "^$username" /etc/passwd
+
+if [ $? -eq 0 ] 
+then
+echo "This user already exits"
+else
+echo "please enter password"
+
+read -s pw  
+newpw=$(echo "$pw" | openssl passwd -6 -stdin)
+useradd -md /home/$username  -p $newpw  $username
+
+echo "congrats $username user is created"
+fi

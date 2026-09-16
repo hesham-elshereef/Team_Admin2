@@ -1,0 +1,6 @@
+function listlast10users_script { 
+      
+           tail -10 /etc/passwd | cut -d: -f1,2,7  
+}
+
+
